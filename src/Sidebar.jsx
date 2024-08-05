@@ -1,9 +1,19 @@
-const sidebar = ()=>{
+import React,{ useContext} from "react";
+import { MainContext } from "./contexts/MainContext";
+
+const Sidebar = ()=>{
+    const {showMenu,setShowMenu}= useContext(MainContext)
+
+    const handelShowMenu =(event)=>{
+        event.stopPropagation()
+        setShowMenu(!showMenu)
+        console.log(showMenu);
+    }
     return(
         <>
-            <nav id="sidebar" className="order-last">
+            <nav id="sidebar" className="order-last" style={showMenu ? {left:300} : {}}>
                 <div className="custom-menu">
-                    <button type="button" id="sidebarCollapse" className="btn btn-primary">
+                    <button onClick={handelShowMenu} type="button" id="sidebarCollapse" className="btn btn-primary">
                     </button>
                 </div>
                 <div className="">
@@ -32,4 +42,4 @@ const sidebar = ()=>{
         </>
     )
 }
-export default sidebar;
+export default Sidebar;
