@@ -1,5 +1,6 @@
 import React,{ useContext} from "react";
 import { MainContext } from "./contexts/MainContext";
+import { Link } from "react-router-dom";
 
 const Sidebar = ()=>{
     const {showMenu,setShowMenu}= useContext(MainContext)
@@ -18,23 +19,23 @@ const Sidebar = ()=>{
                 </div>
                 <div className="">
                     <h1>
-                        <a href="index.html" className="logo">وبلاگ شخصی <span>مهارت ریکت</span></a>
+                        <Link to="/" className="logo">وبلاگ شخصی <span>مهارت ریکت</span></Link>
                     </h1>
                     <ul className="list-unstyled components mb-5">
                         <li className="active">
-                            <a href="/"><span className="fa fa-home mr-3"></span> صفحه اصلی</a>
+                            <Link to="/"><span className="fa fa-home mr-3"></span> صفحه اصلی</Link>
                         </li>
                         <li>
-                            <a href="/"><span className="fa fa-user mr-3"></span> کاربران</a>
+                            <Link to="user"><span className="fa fa-user mr-3"></span> کاربران</Link>
                         </li>
                         <li>
-                            <a href="/"><span className="fa fa-sticky-note mr-3"></span> پست ها</a>
+                            <Link to="post"><span className="fa fa-sticky-note mr-3"></span> پست ها</Link>
                         </li>
                         <li>
-                            <a href="/"><span className="fa fa-image mr-3"></span> گالری</a>
+                            <Link to="gallery"><span className="fa fa-image mr-3"></span> گالری</Link>
                         </li>
                         <li>
-                            <a href="/"><span className="fa fa-check mr-3"></span> لیست</a>
+                            <Link to="todolist"><span className="fa fa-check mr-3"></span> لیست</Link>
                         </li>
                     </ul>
                 </div>
