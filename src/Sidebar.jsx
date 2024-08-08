@@ -26,16 +26,16 @@ const Sidebar = ()=>{
                             <Link to="/"><span className="fa fa-home mr-3"></span> صفحه اصلی</Link>
                         </li>
                         <li>
-                            <Link to="user"><span className="fa fa-user mr-3"></span> کاربران</Link>
+                            <Link to="/user"><span className="fa fa-user mr-3"></span> کاربران</Link>
                         </li>
                         <li>
-                            <Link to="post"><span className="fa fa-sticky-note mr-3"></span> پست ها</Link>
+                            <Link to="/post"><span className="fa fa-sticky-note mr-3"></span> پست ها</Link>
                         </li>
                         <li>
-                            <Link to="gallery"><span className="fa fa-image mr-3"></span> گالری</Link>
+                            <Link to="/gallery"><span className="fa fa-image mr-3"></span> گالری</Link>
                         </li>
                         <li>
-                            <Link to="todolist"><span className="fa fa-check mr-3"></span> لیست</Link>
+                            <Link to="/todolist"><span className="fa fa-check mr-3"></span> لیست</Link>
                         </li>
                     </ul>
                 </div>
