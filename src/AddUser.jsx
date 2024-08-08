@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const AddUser = ()=>{
     const {userId} = useParams()
+    const navigate = useNavigate()
     return(
         <div id="content" className="container">
             <h3><span className={userId ? "badge badge-warning" : "badge badge-primary"}>{userId ? "ویرایش کاربران:" : "ثبت نام کاربران:"}</span></h3>
@@ -36,7 +37,7 @@ const AddUser = ()=>{
                         <input type="text" className="col form-control mr-sm-2 border" placeholder="کوچه" />
                     </div>
                     <div className="form-group text-left p-3 mt-5">
-                        <button className="btn btn-danger ml-1">بازنشانی</button>
+                        <button className="btn btn-danger ml-1" onClick={()=>{navigate(-1)}}>بازگشت</button>
                         <button className={userId ? "btn btn-warning": "btn btn-primary"}>{userId ? "ویرایش" : "ثبت"}</button>
                     </div>
                 </form>

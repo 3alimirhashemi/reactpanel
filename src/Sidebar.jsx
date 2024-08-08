@@ -1,6 +1,6 @@
 import React,{ useContext} from "react";
 import { MainContext } from "./contexts/MainContext";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ()=>{
     const {showMenu,setShowMenu}= useContext(MainContext)
@@ -17,26 +17,36 @@ const Sidebar = ()=>{
                     <button onClick={handelShowMenu} type="button" id="sidebarCollapse" className="btn btn-primary">
                     </button>
                 </div>
-                <div className="">
+                <div>
                     <h1>
-                        <Link to="/" className="logo">وبلاگ شخصی <span>مهارت ریکت</span></Link>
+                        <NavLink to="/" className="logo">وبلاگ شخصی <span>مهارت ریکت</span></NavLink>
                     </h1>
                     <ul className="list-unstyled components mb-5">
-                        <li className="active">
-                            <Link to="/"><span className="fa fa-home mr-3"></span> صفحه اصلی</Link>
-                        </li>
+                    
                         <li>
-                            <Link to="/user"><span className="fa fa-user mr-3"></span> کاربران</Link>
+                        <NavLink to="/" style={({isActive}) =>{return isActive ? {color:'black'}:{}}}><span className="fa fa-home mr-3"></span> صفحه اصلی</NavLink>
                         </li>
+                    
+                    
                         <li>
-                            <Link to="/post"><span className="fa fa-sticky-note mr-3"></span> پست ها</Link>
+                        <NavLink to="/user" style={({isActive}) =>{return isActive ? {color:'black'}:{}}}><span className="fa fa-user mr-3"></span> کاربران</NavLink>
                         </li>
+                    
+                    
                         <li>
-                            <Link to="/gallery"><span className="fa fa-image mr-3"></span> گالری</Link>
+                        <NavLink to="/post" style={({isActive}) =>{return isActive ? {color:'black'}:{}}}><span className="fa fa-sticky-note mr-3"></span> پست ها</NavLink>
                         </li>
+                    
+                   
                         <li>
-                            <Link to="/todolist"><span className="fa fa-check mr-3"></span> لیست</Link>
+                        <NavLink to="/gallery" style={({isActive}) =>{return isActive ? {color:'black'}:{}}}><span className="fa fa-image mr-3"></span> گالری </NavLink>
                         </li>
+                   
+                    
+                        <li>
+                        <NavLink to="/todolist" style={({isActive}) =>{return isActive ? {color:'black'} : {}}}><span className="fa fa-check mr-3"></span> لیست</NavLink>
+                        </li>
+                    
                     </ul>
                 </div>
             </nav>
