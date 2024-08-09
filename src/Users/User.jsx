@@ -1,11 +1,32 @@
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 const User = ()=>{
+    const handelDel = (timeIde)=>{
+        swal({
+            title: `از حذف رکورد ${timeIde} اطمینان دارید؟`,
+            text: "!رکورد به صورت کامل حذف می شود و امکان بازیابی نیست",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal(" .رکورد حذف شد ", {
+                icon: "success",
+              });
+            } else {
+              swal(".هیچ عملیاتی انجام شد",{
+                icon: "info",
+              });
+            }
+          });
+    }
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
             <div className="mb-4">
             <h2 className="mb-4">کاربران</h2>
-                <table class="table table-striped">
+                <table className="table table-striped">
                     <thead>
                         <tr>
                         <th scope="col">شماره</th>
@@ -29,7 +50,7 @@ const User = ()=>{
                             <Link to="/user/add/2">
                             <i className="fa fa-edit text-warning"></i>
                             </Link>
-                            <i className="fa fa-trash text-danger mx-2"></i>
+                            <i className="fa fa-trash text-danger mx-2" onClick={()=>{handelDel(1)}}></i>
                         </td>
                         </tr>
                     </tbody>

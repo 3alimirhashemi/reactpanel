@@ -8,7 +8,6 @@ const Sidebar = ()=>{
     const handelShowMenu =(event)=>{
         event.stopPropagation()
         setShowMenu(!showMenu)
-        console.log(showMenu);
     }
     return(
         <>

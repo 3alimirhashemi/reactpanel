@@ -10,19 +10,19 @@ const AddUser = ()=>{
             <div className="shadow p-3 mb-5 bg-body rounded">
                 <form className="form-group">
                     <div className="form-group">
-                        <label for="formGroupExampleInput2">نام</label>
+                        <label className="form-label">نام</label>
                         <input type="text" className="form-control mr-sm-2 border" placeholder="مثال : محسن " size={20}/>
                     </div>
                     <div className="form-group">
-                        <label for="formGroupExampleInput2">نام خانوادگی</label>
+                        <label className="form-label">نام خانوادگی</label>
                         <input type="text" className="form-control mr-sm-2 border" placeholder="مثال : امیری" size={35}/>
                     </div>
                     <div className="form-group">
-                        <label for="formGroupExampleInput2">تلفن</label>
+                        <label className="form-label">تلفن</label>
                         <input type="tel" className="form-control mr-sm-2 border" placeholder="09121234567" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" size={11} required/>
                     </div>
                     <div className="form-group">
-                        <label for="formGroupExampleInput2">ایمیل</label>
+                        <label className="form-label">ایمیل</label>
                         <input type="email" className="form-control mr-sm-2 border" placeholder="mohsen@gmail.com" pattern=".+@example\.com" size={30} required/>
                     </div>
 

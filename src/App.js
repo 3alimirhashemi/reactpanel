@@ -11,7 +11,7 @@ const App = ()=>{
   return (
     <BrowserRouter>
     <div className="App">
-    	<div class="wrapper d-flex align-items-stretch">
+    	<div className="wrapper d-flex align-items-stretch">
       
           <MainContext.Provider value={{showMenu, setShowMenu}}>
             
