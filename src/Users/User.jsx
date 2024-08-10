@@ -4,8 +4,64 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const User = ()=>{
+
+
     const [ users,setUsers ] = useState([]);
     useEffect(()=>{
+
+// new Promise
+      // new Promise((resolve, reject)=>{
+      //   console.log(1);
+      //   setTimeout(() => {
+      //     console.log(2);
+      //     resolve(true)
+      //   }, 1000);
+
+      // }).then(res=>{
+      //   console.log(3);
+      // }).catch(err=>{
+      //   console.log(err);
+            // })
+// end new promise
+
+// async & await
+    //   const func =()=>{
+    //     return new Promise ((resolve, reject)=>{
+    //       console.log(1);
+    //       setTimeout(() => {
+    //         console.log(2);
+    //         resolve(true)
+    //       }, 1000);
+
+    //   }) 
+    // }
+    //   const test = async ()=>{
+    //     const res = await func();
+    //     if (res){
+    //       console.log(3);
+    //     }
+    //   }
+    //   test();
+// end async & await
+
+      // const prom = (id)=>{
+      //   return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+      // }
+
+      //  const func = async (id)=>{
+      //    // await prom(id).then(res=>{
+      //     //   console.log(res.data);
+      //     // });
+      //     const res = await prom(id)
+      //     console.log(res);
+      //     console.log(id);
+      //  }  
+       
+      // for (const item of [1,2,3,4,5,6]){
+
+      //   func(item);
+      // }
+
       axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
           setUsers(res.data)
           
@@ -20,7 +76,7 @@ const User = ()=>{
             title: `از حذف رکورد ${timeIde} اطمینان دارید؟`,
             text: "!رکورد به صورت کامل حذف می شود و امکان بازیابی نیست",
             icon: "warning",
-            buttons: true,
+            buttons: ["خیر","بله"],
             dangerMode: true,
           })
           .then((willDelete) => {
@@ -29,7 +85,7 @@ const User = ()=>{
                 icon: "success",
               });
             } else {
-              swal(".هیچ عملیاتی انجام شد",{
+              swal(".هیچ عملیاتی انجام نشد",{
                 icon: "info",
               });
             }
@@ -54,7 +110,7 @@ const User = ()=>{
                     </thead>
                     {users.map(u=>(
                                     <tbody>
-                                          <tr>
+                                          <tr key={u.id}>
                                             <th scope="row">{u.id}</th>
                                             <td>{u.name}</td>
                                             <td>{u.username}</td>
@@ -62,7 +118,7 @@ const User = ()=>{
                                             <td>{u.email}</td>
                                             <td>{u.address.city},{u.address.street},{u.address.suit},{u.address.zipcode}</td>
                                             <td className="h5 mx-2">
-                                                <Link to="/user/add/2">
+                                                <Link to="/user/add/2" >
                                                 <i className="fa fa-edit text-warning"></i>
                                                 </Link>
                                                 <i className="fa fa-trash text-danger mx-2" onClick={()=>{handelDel(1)}}></i>
