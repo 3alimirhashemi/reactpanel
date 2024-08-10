@@ -71,22 +71,33 @@ const User = ()=>{
 
     }, []);
 
-    const handelDel = (timeIde)=>{
+    const handelDel = (userIde)=>{
         swal({
-            title: `از حذف رکورد ${timeIde} اطمینان دارید؟`,
+            title: `از حذف رکورد ${userIde} اطمینان دارید؟`,
             text: "!رکورد به صورت کامل حذف می شود و امکان بازیابی نیست",
             icon: "warning",
             buttons: ["خیر","بله"],
             dangerMode: true,
+            
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal(" .رکورد حذف شد ", {
-                icon: "success",
-              });
+              axios.delete(`https://jsonplaceholder.typicode.com/users/${userIde}`).then(res=>{
+                console.log(res);
+                if (res.status === 200){
+                  const newUsers = users.filter(u=>u.id !== userIde);
+                  setUsers(newUsers);
+                  swal(" .رکورد حذف شد ", {
+                    icon: "success",
+                    buttons: "بله",
+                  });
+                
+                }
+              })
             } else {
               swal(".هیچ عملیاتی انجام نشد",{
                 icon: "info",
+                buttons:"بله",
               });
             }
           });
@@ -121,7 +132,7 @@ const User = ()=>{
                                                 <Link to="/user/add/2" >
                                                 <i className="fa fa-edit text-warning"></i>
                                                 </Link>
-                                                <i className="fa fa-trash text-danger mx-2" onClick={()=>{handelDel(1)}}></i>
+                                                <i className="fa fa-trash text-danger mx-2" onClick={()=>{handelDel(u.id)}}></i>
                                             </td>
                                           </tr>
                                       </tbody>
