@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 
 const AddUser = ()=>{
-    const {userId} = useParams()
-    const navigate = useNavigate()
+    const {userId} = useParams();
+    const navigate = useNavigate();
+    
     const [data,setData] = useState({
         name:'',
         username:'',
@@ -13,18 +15,52 @@ const AddUser = ()=>{
         email:'',
         address:{
             city:'',
-            suit:'',
             street:'',
+            suite:'',
             zipcode:'',
         }
 
     })
+    
     const handelAddUser = (e)=>{
         e.preventDefault();
-        axios.post('https://jsonplaceholder.typicode.com/users', data).then(res=>{
-            console.log(res);
-        });
+        if(!userId){
+            axios.post('https://jsonplaceholder.typicode.com/users', data).then(res=>{
+                console.log(res);
+                swal(`.به لیست اضافه شد ${res.data.name}`, {
+                    icon: "success",
+                    buttons: "بله",
+                  });
+            });
+        }else{
+            axios.put(`https://jsonplaceholder.typicode.com/users/${userId}`, data).then(res=>{
+                console.log(res);
+                swal(` .از لیست ویرایش شد ${res.data.name}`, {
+                    icon: "success",
+                    buttons: "بله",
+                  });
+            });
+        }
+    
     }
+
+    useEffect(()=>{
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`).then(res=>{
+            setData({
+                name:res.data.name,
+                username: res.data.username,
+                phone:res.data.phone,
+                email:res.data.email,
+                address:{
+                    city:res.data.address.city,
+                    street:res.data.address.street,
+                    suite:res.data.address.suite,
+                    zipcode:res.data.address.zipcode,
+                }
+            })
+        });
+    }, [userId])
+    
     return(
         <div id="content" className="container">
             <h3><span className={userId ? "badge badge-warning" : "badge badge-primary"}>{userId ? "ویرایش کاربران:" : "ثبت نام کاربران:"}</span></h3>
@@ -51,14 +87,14 @@ const AddUser = ()=>{
 
                         <input type="text" className="col form-control mr-sm-2 border" value={data.address.city} onChange={(e)=>setData({...data , address:{...data.address, city:e.target.value}})} placeholder="کشور" />
 
-                        <input type="text" className="col form-control mr-sm-2 border" value={data.address.suit} onChange={(e)=>setData({...data, address:{...data.address, suit:e.target.value}})} placeholder="شهر" />
+                        <input type="text" className="col form-control mr-sm-2 border" value={data.address.street} onChange={(e)=>setData({...data, address:{...data.address, street:e.target.value}})} placeholder="شهر" />
 
-                        <input type="text" className="col form-control mr-sm-2 border" value={data.address.street} onChange={(e)=>setData({...data, address:{...data.address, street:e.target.value}})} placeholder="خیابان"/>
+                        <input type="text" className="col form-control mr-sm-2 border" value={data.address.suite} onChange={(e)=>setData({...data, address:{...data.address, suite:e.target.value}})} placeholder="خیابان"/>
 
                         <input type="text" className="col form-control mr-sm-2 border" value={data.address.zipcode} onChange={(e)=>setData({...data, address:{...data.address, zipcode:e.target.value}})} placeholder="کوچه" />
                     </div>
                     <div className="form-group text-left p-3 mt-5">
-                        <button className="btn btn-danger ml-1" onClick={()=>{navigate(-1)}}>بازگشت</button>
+                        <button className="btn btn-danger ml-1" onClick={()=>{navigate("/user")}}>بازگشت</button>
                         <button type="submit" className={userId ? "btn btn-warning": "btn btn-primary"}>{userId ? "ویرایش" : "ثبت"}</button>
                     </div>
                 </form>

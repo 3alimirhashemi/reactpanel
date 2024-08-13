@@ -1,9 +1,44 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const Post = ()=>{
+    const [data , setData] = useState([]);
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/posts').then(res=>{
+            console.log(res.data);
+            setData(res.data)
+        }).catch(err=>{
+            console.log(err);
+        })
+    })
+
+
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
-            <h2 className="mb-4">پست</h2>
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+            <h2 className="mb-4">پست</h2>        
+            {data.map(u=>(
+                <div className="container">
+                <h1 className="text-center badge badge-info">{u.title}</h1>
+                <p className="justify-content-center">{u.body}</p>
+                <div className="d-flex justify-content-end">
+                    <div className="m-1">
+                        <span className="fa fa-user-circle-o"></span>
+                        <p className="badge badge-light pl-2">{u.title}</p>
+                    </div>
+                    <div className="m-1">
+                        <span className="fa fa-comment"></span>
+                        <p className="badge badge-light pl-2">{u.id}</p>
+                    </div>
+                    <div className="m-1">
+                        <span className="fa fa-heart"></span>
+                        <p className="badge badge-light pl-2">{u.userId}</p>
+                    </div>
+                    
+                </div>
+                <hr/>
+                </div>
+            ))}
+            
         </div>
     )
 }

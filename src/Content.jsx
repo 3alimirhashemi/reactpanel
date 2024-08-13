@@ -14,7 +14,7 @@ const Content = ()=>{
                         <Route path='/' element={<EditeComp />} />
                     </Route>
                     <Route path='/user' element={<User />} />
-                    <Route path='/user/add/' element={<AddUser/>}>
+                    <Route path='/user/add' element={<AddUser/>}>
                         <Route path=':userId'/>
                     </Route>
                     <Route path='/todolist' element={<Todolist />} />

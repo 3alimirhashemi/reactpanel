@@ -1,69 +1,18 @@
-import { Link } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const User = ()=>{
 
-
+    const navigate = useNavigate()
     const [ users,setUsers ] = useState([]);
+    const [mainUser, setMainUser] = useState([]);
     useEffect(()=>{
-
-// new Promise
-      // new Promise((resolve, reject)=>{
-      //   console.log(1);
-      //   setTimeout(() => {
-      //     console.log(2);
-      //     resolve(true)
-      //   }, 1000);
-
-      // }).then(res=>{
-      //   console.log(3);
-      // }).catch(err=>{
-      //   console.log(err);
-            // })
-// end new promise
-
-// async & await
-    //   const func =()=>{
-    //     return new Promise ((resolve, reject)=>{
-    //       console.log(1);
-    //       setTimeout(() => {
-    //         console.log(2);
-    //         resolve(true)
-    //       }, 1000);
-
-    //   }) 
-    // }
-    //   const test = async ()=>{
-    //     const res = await func();
-    //     if (res){
-    //       console.log(3);
-    //     }
-    //   }
-    //   test();
-// end async & await
-
-      // const prom = (id)=>{
-      //   return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
-      // }
-
-      //  const func = async (id)=>{
-      //    // await prom(id).then(res=>{
-      //     //   console.log(res.data);
-      //     // });
-      //     const res = await prom(id)
-      //     console.log(res);
-      //     console.log(id);
-      //  }  
-       
-      // for (const item of [1,2,3,4,5,6]){
-
-      //   func(item);
-      // }
 
       axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
           setUsers(res.data)
+          setMainUser(res.data)
           
       }).catch(err=>{
           console.log(err);
@@ -101,9 +50,30 @@ const User = ()=>{
               });
             }
           });
+          
     }
+
+    const handelSearch = (e)=>{
+      e.preventDefault();
+      setUsers(mainUser.filter(u=>u.name.includes(e.target.value)))
+
+    }
+
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
+            <div className="mb-5 px-4">
+                <form className="form-inline my-2 my-lg-0">
+                    <div className="form-group d-flex">
+                        <input type="search" className="form-control mr-sm-2 border" onChange={handelSearch} placeholder="جستجو براساس نام ..." />
+                        <button className="form-control border btn btn-dark m-1" type="submit"><span className="fa fa-search mr-0 p-2" ></span></button>
+                    </div>
+                    <Link to="/user/add">
+                        <div className="form-group d-flex">
+                            <button className="btn btn-success m-1 m-lg-5"><span className="fa fa-plus mr-0 p-2"></span></button>
+                        </div>
+                    </Link>
+                </form>
+            </div>
             <h2 className="mb-4">کاربران</h2>
             {users.length ? (
                 <div className="mb-4">
@@ -127,11 +97,11 @@ const User = ()=>{
                                             <td>{u.username}</td>
                                             <td>{u.phone}</td>
                                             <td>{u.email}</td>
-                                            <td>{u.address.city},{u.address.street},{u.address.suit},{u.address.zipcode}</td>
+                                            <td>{u.address.city},{u.address.street},{u.address.suite},{u.address.zipcode}</td>
                                             <td className="h5 mx-2">
-                                                <Link to="/user/add/2" >
-                                                <i className="fa fa-edit text-warning"></i>
-                                                </Link>
+
+                                                <i className="fa fa-edit text-warning" onClick={()=>{navigate(`user/add/${u.id}`)}}></i>
+
                                                 <i className="fa fa-trash text-danger mx-2" onClick={()=>{handelDel(u.id)}}></i>
                                             </td>
                                           </tr>

@@ -1,21 +1,8 @@
-import { Link , Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 
 const Main = ()=>{
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
-            <div className="mb-5 px-4">
-                <form action="#" className="form-inline my-2 my-lg-0">
-                    <div className="form-group d-flex">
-                        <input type="search" className="form-control mr-sm-2 border" placeholder="جستجو ..." />
-                        <button className="form-control border btn btn-dark m-1"><span className="fa fa-search mr-0 p-2"></span></button>
-                    </div>
-                    <Link to="/user/add">
-                        <div className="form-group d-flex">
-                            <button className="btn btn-success m-1 m-lg-5"><span className="fa fa-plus mr-0 p-2"></span></button>
-                        </div>
-                    </Link>
-                </form>
-            </div>
     
             <h2 className="mb-4">صفحه اصلی</h2>
             <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
