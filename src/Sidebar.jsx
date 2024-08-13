@@ -11,7 +11,7 @@ const Sidebar = ()=>{
     }
     return(
         <>
-            <nav id="sidebar" className="order-last" style={showMenu ? {left:300} : {}}>
+            <nav id="sidebar" className="order-last" style={showMenu ? {right:-300,position:'fixed'} : {}}>
                 <div className="custom-menu">
                     <button onClick={handelShowMenu} type="button" id="sidebarCollapse" className="btn btn-primary">
                     </button>
