@@ -10,7 +10,7 @@ const User = ()=>{
     const [mainUser, setMainUser] = useState([]);
     useEffect(()=>{
 
-      axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+      axios.get('https://jsonplaceholder.typicode.com/users', users).then(res=>{
           setUsers(res.data)
           setMainUser(res.data)
           
@@ -18,7 +18,7 @@ const User = ()=>{
           console.log(err);
       })
 
-    }, []);
+    }, [users]);
 
     const handelDel = (userIde)=>{
         swal({

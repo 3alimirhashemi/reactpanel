@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import swal from "sweetalert";
+import { serviceAddUser,servicePutUser,serviceCreateUserbyGet } from "./services/servicesUser";
 
 
 const AddUser = ()=>{
@@ -25,40 +24,17 @@ const AddUser = ()=>{
     const handelAddUser = (e)=>{
         e.preventDefault();
         if(!userId){
-            axios.post('https://jsonplaceholder.typicode.com/users', data).then(res=>{
-                console.log(res);
-                swal(`.به لیست اضافه شد ${res.data.name}`, {
-                    icon: "success",
-                    buttons: "بله",
-                  });
-            });
+            serviceAddUser(data);
         }else{
-            axios.put(`https://jsonplaceholder.typicode.com/users/${userId}`, data).then(res=>{
-                console.log(res);
-                swal(` .از لیست ویرایش شد ${res.data.name}`, {
-                    icon: "success",
-                    buttons: "بله",
-                  });
-            });
+            servicePutUser(data, userId);
         }
     
     }
 
     useEffect(()=>{
-        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`).then(res=>{
-            setData({
-                name:res.data.name,
-                username: res.data.username,
-                phone:res.data.phone,
-                email:res.data.email,
-                address:{
-                    city:res.data.address.city,
-                    street:res.data.address.street,
-                    suite:res.data.address.suite,
-                    zipcode:res.data.address.zipcode,
-                }
-            })
-        });
+        if (userId){
+            serviceCreateUserbyGet(userId,setData)
+        }
     }, [userId])
     
     return(
