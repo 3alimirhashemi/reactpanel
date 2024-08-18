@@ -1,55 +1,44 @@
 import { useNavigate,Link } from "react-router-dom";
-import swal from "sweetalert";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SweetAlert from "../HOC/SweetAlert";
 
-const User = ()=>{
-
-    const navigate = useNavigate()
-    const [ users,setUsers ] = useState([]);
-    const [mainUser, setMainUser] = useState([]);
-    useEffect(()=>{
-
-      axios.get('https://jsonplaceholder.typicode.com/users', users).then(res=>{
-          setUsers(res.data)
-          setMainUser(res.data)
-          
-      }).catch(err=>{
-          console.log(err);
-      })
-
-    }, [users]);
-
-    const handelDel = (userIde)=>{
-        swal({
-            title: `از حذف رکورد ${userIde} اطمینان دارید؟`,
-            text: "!رکورد به صورت کامل حذف می شود و امکان بازیابی نیست",
-            icon: "warning",
-            buttons: ["خیر","بله"],
-            dangerMode: true,
+const User = (props)=>{
+  const navigate = useNavigate()
+  const [ users,setUsers ] = useState([]);
+  const [mainUser, setMainUser] = useState([]);
+  const {Confirm,Alert} = props;
+  useEffect(()=>{
+    
+    axios.get('https://jsonplaceholder.typicode.com/users', users).then(res=>{
+      setUsers(res.data)
+      setMainUser(res.data)
+      
+    }).catch(err=>{
+      console.log(err);
+    })
+    
+  }, [users]);
+  
+    const handelDel = async (userId)=>{
             
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              axios.delete(`https://jsonplaceholder.typicode.com/users/${userIde}`).then(res=>{
+            if (await Confirm(`از حذف رکورد ${userId} اطمینان دارید؟`)) {
+              axios.delete(`https://jsonplaceholder.typicode.com/users/${userId}`).then(res=>{
                 console.log(res);
                 if (res.status === 200){
-                  const newUsers = users.filter(u=>u.id !== userIde);
+                  const newUsers = users.filter(u=>u.id !== userId);
                   setUsers(newUsers);
-                  swal(" .رکورد حذف شد ", {
-                    icon: "success",
-                    buttons: "بله",
-                  });
+                  Alert('.رکورد با موفقیت حذف شد',"success")
                 
+                }else{
+                  Alert('.عملیات با خطا مواجه شد',"error")
                 }
               })
             } else {
-              swal(".هیچ عملیاتی انجام نشد",{
-                icon: "info",
-                buttons:"بله",
-              });
+
+              Alert(".شما از حدف رکورد منصرف شدید", "info")
             }
-          });
           
     }
 
@@ -120,4 +109,4 @@ const User = ()=>{
         </div>
     )
 }
-export default User;
+export default SweetAlert(User);

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import CountButton from "./Count";
-import HoverButton from "./Hover";
+
 
 const Post = ()=>{
     const [data , setData] = useState([]);
@@ -18,8 +17,7 @@ const Post = ()=>{
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
             <h2 className="mb-4">پست</h2> 
-            <CountButton />
-            <HoverButton />
+
             {data.length ? (
                             
                 <div className="container">
