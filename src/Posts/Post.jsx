@@ -51,7 +51,7 @@ const Post = ()=>{
             <div className="mb-5 px-4">
                 <form className="form-inline my-2 my-lg-0">
                     <div className="form-group d-flex">
-                        <input type="search" className="form-control mr-sm-2 border" value={uId} onChange={(e)=>setUid(e.target.value)} placeholder="جستجو براساس شماره ..." />
+                        <input type="number" className="form-control mr-sm-2 border" value={uId} onChange={(e)=>setUid(e.target.value)} placeholder="جستجو براساس شماره ..." />
                         <button className="form-control border btn btn-dark m-1" type="submit"><span className="fa fa-search mr-0 p-2" ></span></button>
                     </div>
                     <Link to="/post/add">
