@@ -83,8 +83,8 @@ const Post = ()=>{
                                 <p className="badge badge-light pl-2">{u.userId}</p>
                             </div>
                             <div className="m-1">
-                                <i className="fa fa-edit text-warning pointer" onClick={()=>{navigate(`post/add/${u.id}`)}}></i>
-                                <i className="fa fa-trash text-danger mx-2 pointer" onClick={()=>{handelDel(u.id)}}></i>
+                                <i className="fa fa-edit text-warning pointer" onClick={()=> navigate(`/post/add/${u.id}`)}></i>
+                                <i className="fa fa-trash text-danger mx-2 pointer" onClick={()=> handelDel(u.id)}></i>
                             </div>
                                     
                         </div>

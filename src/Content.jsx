@@ -6,6 +6,7 @@ import Gallery from './Gallery/Gallery'
 import { Route, Routes } from 'react-router-dom';
 import AddUser from './AddUser';
 import EditeComp from './Edite/edite';
+import AddPost from './Posts/AddPost2';
 const Content = ()=>{
     return(
         <div id="content" className="p-4 p-md-5 pt-5">
@@ -13,13 +14,21 @@ const Content = ()=>{
                     <Route path='/' element={<Main/>}>
                         <Route path='/' element={<EditeComp />} />
                     </Route>
+
                     <Route path='/user' element={<User />} />
                     <Route path='/user/add' element={<AddUser/>}>
                         <Route path=':userId'/>
                     </Route>
+
                     <Route path='/todolist' element={<Todolist />} />
+
                     <Route path='/post' element={<Post />} />
+                    <Route path='/post/add' element={<AddPost/>}>
+                        <Route path=':postId'/>
+                    </Route>
+
                     <Route path='/gallery' element={<Gallery />} />
+                    
                     <Route path='*' element={<User />} />
                 </Routes>
         </div>

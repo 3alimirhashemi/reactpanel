@@ -6,23 +6,25 @@ export const getServicePost = ()=>{
     return jpAxsios.get('/posts');
 }
 
-// export const serviceAddUser = async (data)=>{
-//      const res = await jpAxsios.post('/users',data)
-//     if(res){
-//             swal(`.به لیست اضافه شد ${res.data.name}`, {
-//                 icon: "success",
-//                 buttons: "بله",
-//               });
-//     }else{
+export const serviceAddPost = async (data)=>{
+     const res = await jpAxsios.post('/posts',data)
+    if(res){
+            swal(`.به لیست اضافه شد ${res.data.title}`, {
+                icon: "success",
+                buttons: "بله",
+              });
+    }else{
 
-//     }
-// }
-// export const servicePutUser = async (data, userId)=>{
-//     const res = await jpAxsios.put(`/users/${userId}`,data)
-//     if(res){
-//         swal(` .از لیست ویرایش شد ${res.data.name}`, {
-//             icon: "success",
-//             buttons: "بله",
-//           });
+    }
+}
 
-//     }
+export const serviceUpdatePost = async (data, postId)=>{
+    const res = await jpAxsios.put(`/posts/${postId}`,data)
+    if(res){
+        swal(` .از لیست ویرایش شد ${res.data.title}`, {
+            icon: "success",
+            buttons: "بله",
+          });
+
+    }
+}
